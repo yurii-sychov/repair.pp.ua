@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "datatables.net": "^1.10.22",
+    "datatables.net-bs4": "^1.10.22",
     "jquery": "^3.5.1"
   }
 }

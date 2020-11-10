@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 const $ = require('jquery');
 $.DataTable = require('datatables.net');
+require('datatables.net-bs4');
 
 class ProtectiveArsenalContent extends React.Component {
 	constructor(props) {
@@ -18,30 +19,82 @@ class ProtectiveArsenalContent extends React.Component {
 	async componentDidMount() {
 		const columns = [
 			{
-				title: 'Name',
-				width: 120,
+				title: '#',
+				width: '5%',
+				data: 'id',
+				className: 'text-center'
+			},
+			{
+				title: 'Підстанція',
+				width: '16%',
+				data: 'stantion'
+			},
+			{
+				title: 'Наименування',
+				width: '16%',
 				data: 'name'
 			},
 			{
-				title: 'Type',
-				width: 180,
+				title: 'Тип',
+				width: '16%',
 				data: 'type'
 			},
+			{
+				title: 'Інв. №',
+				width: '16%',
+				data: 'type'
+			},
+			{
+				title: 'Місце',
+				width: '16%',
+				data: 'type'
+			},
+			{
+				title: BsPencil,
+				width: '5%',
+				data: 'id',
+				className: 'text-center',
+				"render": function (data, type, row, meta) {
+					return '<Link to="/protective-arsenal/edit/' + data + '">Правити</Link>';
+				}
+			},
+			{
+				title: 'Дивитися',
+				width: '5%',
+				data: 'id',
+				className: 'text-center',
+				"render": function (data, type, row, meta) {
+					return '<Link to="/protective-arsenal/view/' + data + '">Дивитися</Link>';
+				}
+			},
+			{
+				title: 'Видалити',
+				width: '5%',
+				data: 'id',
+				className: 'text-center',
+				"render": function (data, type, row, meta) {
+					return '<Link to="/protective-arsenal/edit/' + data + '">Видалити</Link>';
+				}
+			}
 		];
+console.log('< BsTrash />', BsPencil)
 		console.log('componentDidMount()', 'Вы пришли на страницу ' + this.props.location.pathname);
 		await this.getData();
 
 		$('#DataTable').DataTable({
-			// dom: '<"data-table-wrapper"t>',
+			dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6 text-right'f>>" +
+				"<'row'<'col-sm-12'tr>>" +
+				"<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
 			data: this.state.posts,
 			columns,
-			ordering: false,
+			ordering: true,
+			autoWidth: false,
 		})
 	}
 
 	async componentWillUnmount() {
 		console.log('componentWillUnmount()', 'Вы ушли со страницы ' + this.props.location.pathname);
-		$('.data-table-wrapper').find('table').DataTable().destroy(true)
+		$('#DataTable_wrapper').find('table').DataTable().destroy(true);
 	}
 
 	async getData() {
@@ -81,7 +134,7 @@ class ProtectiveArsenalContent extends React.Component {
 					<Row>
 						<Col>
 							<h2>ProtectiveArsenal page</h2>
-							<Table striped bordered hover responsive id="DataTable">
+							<Table striped bordered hover id="DataTable">
 								{/* <thead>
 									<tr className="text-center">
 										<th style={{ width: "5%" }}>ID</th>
