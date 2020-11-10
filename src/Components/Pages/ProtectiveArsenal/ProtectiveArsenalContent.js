@@ -3,10 +3,9 @@ import { Container, Row, Col, Table, Spinner } from 'react-bootstrap';
 import Header from '../../Header';
 import { BsPencil, BsEye, BsTrash } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import initDatatables from '../../../Helper/Datatables';
 
 const $ = require('jquery');
-$.DataTable = require('datatables.net');
-require('datatables.net-bs4');
 
 class ProtectiveArsenalContent extends React.Component {
 	constructor(props) {
@@ -17,79 +16,69 @@ class ProtectiveArsenalContent extends React.Component {
 	}
 
 	async componentDidMount() {
-		const columns = [
-			{
-				title: '#',
-				width: '5%',
-				data: 'id',
-				className: 'text-center'
-			},
-			{
-				title: 'Підстанція',
-				width: '16%',
-				data: 'stantion'
-			},
-			{
-				title: 'Наименування',
-				width: '16%',
-				data: 'name'
-			},
-			{
-				title: 'Тип',
-				width: '16%',
-				data: 'type'
-			},
-			{
-				title: 'Інв. №',
-				width: '16%',
-				data: 'type'
-			},
-			{
-				title: 'Місце',
-				width: '16%',
-				data: 'type'
-			},
-			{
-				title: BsPencil,
-				width: '5%',
-				data: 'id',
-				className: 'text-center',
-				"render": function (data, type, row, meta) {
-					return '<Link to="/protective-arsenal/edit/' + data + '">Правити</Link>';
-				}
-			},
-			{
-				title: 'Дивитися',
-				width: '5%',
-				data: 'id',
-				className: 'text-center',
-				"render": function (data, type, row, meta) {
-					return '<Link to="/protective-arsenal/view/' + data + '">Дивитися</Link>';
-				}
-			},
-			{
-				title: 'Видалити',
-				width: '5%',
-				data: 'id',
-				className: 'text-center',
-				"render": function (data, type, row, meta) {
-					return '<Link to="/protective-arsenal/edit/' + data + '">Видалити</Link>';
-				}
-			}
-		];
-console.log('< BsTrash />', BsPencil)
+		// const columns = [
+		// 	{
+		// 		title: '#',
+		// 		width: '5%',
+		// 		data: 'id',
+		// 		className: 'text-center'
+		// 	},
+		// 	{
+		// 		title: 'Підстанція',
+		// 		width: '16%',
+		// 		data: 'stantion'
+		// 	},
+		// 	{
+		// 		title: 'Наименування',
+		// 		width: '16%',
+		// 		data: 'name'
+		// 	},
+		// 	{
+		// 		title: 'Тип',
+		// 		width: '16%',
+		// 		data: 'type'
+		// 	},
+		// 	{
+		// 		title: 'Інв. №',
+		// 		width: '16%',
+		// 		data: 'type'
+		// 	},
+		// 	{
+		// 		title: 'Місце',
+		// 		width: '16%',
+		// 		data: 'type'
+		// 	},
+		// 	{
+		// 		title: BsPencil,
+		// 		width: '5%',
+		// 		data: 'id',
+		// 		className: 'text-center',
+		// 		"render": function (data, type, row, meta) {
+		// 			return '<Link to="/protective-arsenal/edit/' + data + '">Правити</Link>';
+		// 		}
+		// 	},
+		// 	{
+		// 		title: 'Дивитися',
+		// 		width: '5%',
+		// 		data: 'id',
+		// 		className: 'text-center',
+		// 		"render": function (data, type, row, meta) {
+		// 			return '<Link to="/protective-arsenal/view/' + data + '">Дивитися</Link>';
+		// 		}
+		// 	},
+		// 	{
+		// 		title: 'Видалити',
+		// 		width: '5%',
+		// 		data: 'id',
+		// 		className: 'text-center',
+		// 		"render": function (data, type, row, meta) {
+		// 			return '<Link to="/protective-arsenal/edit/' + data + '">Видалити</Link>';
+		// 		}
+		// 	}
+		// ];
 		console.log('componentDidMount()', 'Вы пришли на страницу ' + this.props.location.pathname);
 		await this.getData();
-
-		$('#DataTable').DataTable({
-			dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6 text-right'f>>" +
-				"<'row'<'col-sm-12'tr>>" +
-				"<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-			data: this.state.posts,
-			columns,
-			ordering: true,
-			autoWidth: false,
-		})
+		initDatatables();
 	}
 
 	async componentWillUnmount() {
@@ -133,15 +122,16 @@ console.log('< BsTrash />', BsPencil)
 				<Container fluid>
 					<Row>
 						<Col>
-							<h2>ProtectiveArsenal page</h2>
+							<h2>Захисні засоби</h2>
 							<Table striped bordered hover id="DataTable">
-								{/* <thead>
+								<thead>
 									<tr className="text-center">
 										<th style={{ width: "5%" }}>ID</th>
-										<th style={{ width: "20%" }}>Подстанция</th>
-										<th style={{ width: "20%" }}>Наименование</th>
-										<th style={{ width: "20%" }}>Тип</th>
-										<th style={{ width: "20%" }}>Місце</th>
+										<th style={{ width: "16%" }}>Підстанція</th>
+										<th style={{ width: "16%" }}>Найменування</th>
+										<th style={{ width: "16%" }}>Тип</th>
+										<th style={{ width: "16%" }}>Інв. №</th>
+										<th style={{ width: "16%" }}>Місце</th>
 										<th style={{ width: "5%" }}><BsPencil /></th>
 										<th style={{ width: "5%" }}><BsEye /></th>
 										<th style={{ width: "5%" }}><BsTrash /></th>
@@ -151,7 +141,7 @@ console.log('< BsTrash />', BsPencil)
 									{!this.state.posts.length
 										?
 										<tr className="text-center">
-											<td colSpan="6">
+											<td colSpan="9">
 												<Spinner animation="border" variant="secondary" />
 											</td>
 										</tr>
@@ -162,6 +152,7 @@ console.log('< BsTrash />', BsPencil)
 												<td>{post.filial}</td>
 												<td>{post.name}</td>
 												<td>{post.type}</td>
+												<td>{post.inventory_number}</td>
 												<td>{post.place}</td>
 												<td className="text-center">
 													<Link to={`/protective-arsenal/edit/${post.id}`}>
@@ -177,7 +168,7 @@ console.log('< BsTrash />', BsPencil)
 											</tr>
 										)
 									}
-								</tbody> */}
+								</tbody>
 							</Table>
 						</Col>
 					</Row>
