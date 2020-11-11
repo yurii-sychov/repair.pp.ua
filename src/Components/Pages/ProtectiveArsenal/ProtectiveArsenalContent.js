@@ -124,18 +124,18 @@ class ProtectiveArsenalContent extends React.Component {
 					</Row>
 					<Row>
 						<Col>
-							<Table striped bordered hover id="DataTable">
+							<Table striped bordered hover id="DataTable" data-order='[[ 4, "desc" ]]'>
 								<thead>
 									<tr className="text-center">
-										<th style={{ width: "5%" }}>ID</th>
+										<th style={{ width: "3%" }}>ID</th>
 										<th style={{ width: "16%" }}>Підстанція</th>
-										<th style={{ width: "16%" }}>Найменування</th>
+										<th style={{ width: "24%" }}>Найменування</th>
 										<th style={{ width: "16%" }}>Тип</th>
 										<th style={{ width: "16%" }}>Інв. №</th>
 										<th style={{ width: "16%" }}>Місце</th>
-										<th style={{ width: "5%" }}><BsPencil /></th>
-										<th style={{ width: "5%" }}><BsEye /></th>
-										<th style={{ width: "5%" }}><BsTrash /></th>
+										<th style={{ width: "3%" }} data-orderable="false"><BsPencil /></th>
+										<th style={{ width: "3%" }} data-orderable="false"><BsEye /></th>
+										<th style={{ width: "3%" }} data-orderable="false"><BsTrash /></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -150,7 +150,7 @@ class ProtectiveArsenalContent extends React.Component {
 										this.state.protectiveArsenals.map(post =>
 											<tr key={post.id}>
 												<td className="text-center">{post.id}</td>
-												<td>{post.filial}</td>
+												<td>{post.stantion}</td>
 												<td>{post.name}</td>
 												<td>{post.type}</td>
 												<td>{post.inventory_number}</td>
