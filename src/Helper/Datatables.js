@@ -17,7 +17,7 @@ const initDatatables = () => {
         pagingType: "full_numbers",
         language: {
             "paginate": {
-                "first": "Начало",
+                "first": "Началоdddddddddddddgvgdefgdfgf",
                 "last": "Конец",
                 "next": "Вперёд",
                 "previous": "Назад"
