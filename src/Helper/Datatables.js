@@ -1,6 +1,6 @@
 const $ = require('jquery');
-$.DataTable = require('datatables.net');
-require('datatables.net-bs4');
+// $.DataTable = require('datatables.net');
+$.DataTable = require('datatables.net-bs4');
 
 export const initDatatables = () => {
     $('#DataTable').DataTable({

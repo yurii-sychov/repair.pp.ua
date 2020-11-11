@@ -30,15 +30,21 @@ class ProtectiveArsenalUpdate extends React.Component {
 		}
 	}
 
+	updateRow(event) {
+		event.preventDefault();
+		console.log(event);
+	}
+
 	deleteRow(event) {
-		window.location.href = '/protective-arsenal';
+		event.preventDefault();
+		console.log(event);
 	}
 
 	render() {
 		return (
 			<>
 				<Header />
-				<ProtectiveArsenalForm data={this.state.protectiveArsenal} action="update" />
+				<ProtectiveArsenalForm data={this.state.protectiveArsenal} action="update" handlerUpdate={this.updateRow} handlerDelete={this.deleteRow}/>
 			</>
 		);
 	}

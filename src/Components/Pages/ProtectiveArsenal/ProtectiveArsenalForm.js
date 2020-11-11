@@ -26,8 +26,8 @@ const ProtectiveArsenalForm = (props) => {
 										</Form.Group>
 
 										<Link className="btn btn-success mr-2" to="/protective-arsenal">Назад ко всем средствам</Link>
-										<Button variant="primary" type="submit" className="mr-2">{ props.action === 'update' ? 'Изменить' : 'Создать'}</Button>
-										<Button variant="danger" type="submit" className="mr-2 right">Видалити</Button>
+										<Button variant="primary" type="submit" className="mr-2" onClick={props.handlerUpdate}>{ props.action === 'update' ? 'Изменить' : 'Создать'}</Button>
+										<Button variant="danger" type="submit" className="mr-2 right" onClick={props.handlerDelete}>Видалити</Button>
 									</Form>
 								</Card.Text>
 							</Card.Body>

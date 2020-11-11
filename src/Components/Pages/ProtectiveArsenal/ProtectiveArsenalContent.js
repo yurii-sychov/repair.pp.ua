@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Table, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, Table, Spinner, Button } from 'react-bootstrap';
 import Header from '../../Header';
 import { BsPencil, BsEye, BsTrash } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -17,64 +17,64 @@ class ProtectiveArsenalContent extends React.Component {
 
 	async componentDidMount() {
 		const columns = [
-		// 	{
-		// 		title: '#',
-		// 		width: '5%',
-		// 		data: 'id',
-		// 		className: 'text-center'
-		// 	},
-		// 	{
-		// 		title: 'Підстанція',
-		// 		width: '16%',
-		// 		data: 'stantion'
-		// 	},
-		// 	{
-		// 		title: 'Наименування',
-		// 		width: '16%',
-		// 		data: 'name'
-		// 	},
-		// 	{
-		// 		title: 'Тип',
-		// 		width: '16%',
-		// 		data: 'type'
-		// 	},
-		// 	{
-		// 		title: 'Інв. №',
-		// 		width: '16%',
-		// 		data: 'type'
-		// 	},
-		// 	{
-		// 		title: 'Місце',
-		// 		width: '16%',
-		// 		data: 'type'
-		// 	},
-		// 	{
-		// 		title: BsPencil,
-		// 		width: '5%',
-		// 		data: 'id',
-		// 		className: 'text-center',
-		// 		"render": function (data, type, row, meta) {
-		// 			return '<Link to="/protective-arsenal/edit/' + data + '">Правити</Link>';
-		// 		}
-		// 	},
-		// 	{
-		// 		title: 'Дивитися',
-		// 		width: '5%',
-		// 		data: 'id',
-		// 		className: 'text-center',
-		// 		"render": function (data, type, row, meta) {
-		// 			return '<Link to="/protective-arsenal/view/' + data + '">Дивитися</Link>';
-		// 		}
-		// 	},
-		// 	{
-		// 		title: 'Видалити',
-		// 		width: '5%',
-		// 		data: 'id',
-		// 		className: 'text-center',
-		// 		"render": function (data, type, row, meta) {
-		// 			return '<Link to="/protective-arsenal/edit/' + data + '">Видалити</Link>';
-		// 		}
-		// 	}
+			// 	{
+			// 		title: '#',
+			// 		width: '5%',
+			// 		data: 'id',
+			// 		className: 'text-center'
+			// 	},
+			// 	{
+			// 		title: 'Підстанція',
+			// 		width: '16%',
+			// 		data: 'stantion'
+			// 	},
+			// 	{
+			// 		title: 'Наименування',
+			// 		width: '16%',
+			// 		data: 'name'
+			// 	},
+			// 	{
+			// 		title: 'Тип',
+			// 		width: '16%',
+			// 		data: 'type'
+			// 	},
+			// 	{
+			// 		title: 'Інв. №',
+			// 		width: '16%',
+			// 		data: 'type'
+			// 	},
+			// 	{
+			// 		title: 'Місце',
+			// 		width: '16%',
+			// 		data: 'type'
+			// 	},
+			// 	{
+			// 		title: BsPencil,
+			// 		width: '5%',
+			// 		data: 'id',
+			// 		className: 'text-center',
+			// 		"render": function (data, type, row, meta) {
+			// 			return '<Link to="/protective-arsenal/edit/' + data + '">Правити</Link>';
+			// 		}
+			// 	},
+			// 	{
+			// 		title: 'Дивитися',
+			// 		width: '5%',
+			// 		data: 'id',
+			// 		className: 'text-center',
+			// 		"render": function (data, type, row, meta) {
+			// 			return '<Link to="/protective-arsenal/view/' + data + '">Дивитися</Link>';
+			// 		}
+			// 	},
+			// 	{
+			// 		title: 'Видалити',
+			// 		width: '5%',
+			// 		data: 'id',
+			// 		className: 'text-center',
+			// 		"render": function (data, type, row, meta) {
+			// 			return '<Link to="/protective-arsenal/edit/' + data + '">Видалити</Link>';
+			// 		}
+			// 	}
 		];
 		console.log('componentDidMount()', 'Вы пришли на страницу ' + this.props.location.pathname);
 		await this.getData();
@@ -99,10 +99,6 @@ class ProtectiveArsenalContent extends React.Component {
 		}
 	}
 
-	editRow(event) {
-		console.log(event.target.dataset.id);
-	}
-
 	viewRow(event) {
 		console.log(event);
 	}
@@ -124,6 +120,10 @@ class ProtectiveArsenalContent extends React.Component {
 					<Row>
 						<Col>
 							<h2>Захисні засоби</h2>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
 							<Table striped bordered hover id="DataTable">
 								<thead>
 									<tr className="text-center">
