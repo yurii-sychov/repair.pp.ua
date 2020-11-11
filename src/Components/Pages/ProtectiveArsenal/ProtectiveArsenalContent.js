@@ -3,20 +3,20 @@ import { Container, Row, Col, Table, Spinner } from 'react-bootstrap';
 import Header from '../../Header';
 import { BsPencil, BsEye, BsTrash } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import initDatatables from '../../../Helper/Datatables';
+import { initDatatables, destroyDatatables } from '../../../Helper/Datatables';
 
-const $ = require('jquery');
+// const $ = require('jquery');
 
 class ProtectiveArsenalContent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			posts: []
+			protectiveArsenals: []
 		};
 	}
 
 	async componentDidMount() {
-		// const columns = [
+		const columns = [
 		// 	{
 		// 		title: '#',
 		// 		width: '5%',
@@ -75,7 +75,7 @@ class ProtectiveArsenalContent extends React.Component {
 		// 			return '<Link to="/protective-arsenal/edit/' + data + '">Видалити</Link>';
 		// 		}
 		// 	}
-		// ];
+		];
 		console.log('componentDidMount()', 'Вы пришли на страницу ' + this.props.location.pathname);
 		await this.getData();
 		initDatatables();
@@ -83,7 +83,8 @@ class ProtectiveArsenalContent extends React.Component {
 
 	async componentWillUnmount() {
 		console.log('componentWillUnmount()', 'Вы ушли со страницы ' + this.props.location.pathname);
-		$('#DataTable_wrapper').find('table').DataTable().destroy(true);
+		destroyDatatables();
+		// console.log( $('#DataTable_wrapper').find('table').DataTable().destroy(true) );
 	}
 
 	async getData() {
@@ -91,7 +92,7 @@ class ProtectiveArsenalContent extends React.Component {
 		if (response.ok) {
 			let json = await response.json();
 			this.setState({
-				posts: json.data
+				protectiveArsenals: json.data
 			})
 		} else {
 			alert("Ошибка HTTP: " + response.status);
@@ -138,7 +139,7 @@ class ProtectiveArsenalContent extends React.Component {
 									</tr>
 								</thead>
 								<tbody>
-									{!this.state.posts.length
+									{!this.state.protectiveArsenals.length
 										?
 										<tr className="text-center">
 											<td colSpan="9">
@@ -146,7 +147,7 @@ class ProtectiveArsenalContent extends React.Component {
 											</td>
 										</tr>
 										:
-										this.state.posts.map(post =>
+										this.state.protectiveArsenals.map(post =>
 											<tr key={post.id}>
 												<td className="text-center">{post.id}</td>
 												<td>{post.filial}</td>

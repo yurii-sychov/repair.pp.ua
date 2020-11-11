@@ -8,7 +8,7 @@ class ProtectiveArsenalView extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			post: {}
+			protectiveArsenal: {}
 		};
 	}
 
@@ -21,7 +21,7 @@ class ProtectiveArsenalView extends React.Component {
 		if (response.ok) {
 			let json = await response.json();
 			this.setState({
-				post: json.data
+				protectiveArsenal: json.data
 			});
 		} else {
 			alert("Ошибка HTTP: " + response.status);
@@ -43,15 +43,15 @@ class ProtectiveArsenalView extends React.Component {
 							<Card>
 								<Card.Header as="h5">Информация о защитном средстве</Card.Header>
 								<Card.Body>
-									<Card.Title>{this.state.post.title}</Card.Title>
+									<Card.Title>{this.state.protectiveArsenal.title}</Card.Title>
 									<Card.Text as="div">
 										<dl className="row">
 											<dt className="col-sm-3">ID:</dt>
-											<dd className="col-sm-9">{this.state.post.id}</dd>
+											<dd className="col-sm-9">{this.state.protectiveArsenal.id}</dd>
 											<dt className="col-sm-3">Подстанция:</dt>
-											<dd className="col-sm-9">{this.state.post.stantion_id}</dd>
+											<dd className="col-sm-9">{this.state.protectiveArsenal.stantion_id}</dd>
 											<dt className="col-sm-3">Наименование:</dt>
-											<dd className="col-sm-9">{this.state.post.name}</dd>
+											<dd className="col-sm-9">{this.state.protectiveArsenal.name}</dd>
 										</dl>
 									</Card.Text>
 									<Link className="btn btn-primary" to="/protective-arsenal">Ко всем средствам</Link>

@@ -2,7 +2,7 @@ const $ = require('jquery');
 $.DataTable = require('datatables.net');
 require('datatables.net-bs4');
 
-const initDatatables = () => {
+export const initDatatables = () => {
     $('#DataTable').DataTable({
         dom: "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6 text-right'f>>" +
             "<'row'<'col-sm-12'tr>>" +
@@ -17,10 +17,10 @@ const initDatatables = () => {
         pagingType: "full_numbers",
         language: {
             "paginate": {
-                "first": "Началоdddddddddddddgvgdefgdfgf",
-                "last": "Конец",
-                "next": "Вперёд",
-                "previous": "Назад"
+                "first": "<<",
+                "last": ">>",
+                "next": ">",
+                "previous": "<"
             },
             "search": "Поиск",
             "lengthMenu":     "Показано записей _MENU_",
@@ -31,4 +31,7 @@ const initDatatables = () => {
     });
 }
 
-export default initDatatables;
+export const destroyDatatables = () => {
+    // console.log('destroy')
+    $('#DataTable_wrapper').find('table').DataTable().destroy(true);
+}
